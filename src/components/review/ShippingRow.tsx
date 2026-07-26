@@ -19,7 +19,7 @@ export function ShippingRow() {
         />
       </span>
 
-      <span className="font-gilroy-medium text-ui-12 leading-control font-medium tracking-review text-obsidian tablet:text-ui-14 wide:text-[clamp(18px,1.6514cqw,24px)] wide:leading-[clamp(16px,1.4679cqw,22px)]">
+      <span className="flex h-[41px] self-end items-center font-gilroy-medium text-ui-12 leading-control font-medium tracking-review text-obsidian tablet:text-ui-14 wide:h-[clamp(41px,3.7615cqw,55px)] wide:text-[clamp(18px,1.6514cqw,24px)] wide:leading-[clamp(16px,1.4679cqw,22px)]">
         {shipping.label}
       </span>
 
