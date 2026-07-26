@@ -148,9 +148,7 @@ describe('ReviewPanel', () => {
       screen.getByText(
         'Checkout is a demonstration and no order has been placed.',
       ),
-    ).toHaveTextContent(
-      'Checkout is a demonstration and no order has been placed.',
-    )
+    ).toBeVisible()
   })
 
   it('shows confirmation after saving the current configuration', async () => {

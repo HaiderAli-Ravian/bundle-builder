@@ -26,6 +26,7 @@ export function ProductDetailsDialog({
 
   return (
     <dialog
+      aria-describedby="product-details-description"
       aria-labelledby="product-details-title"
       className="m-auto w-[min(420px,calc(100%-32px))] rounded-panel border-0 bg-card p-6 text-text-primary shadow-xl backdrop:bg-black/40"
       onCancel={onClose}
@@ -40,7 +41,10 @@ export function ProductDetailsDialog({
           >
             {product.name}
           </h2>
-          <p className="mt-3 font-gilroy-medium text-ui-14 leading-copy text-text-secondary">
+          <p
+            className="mt-3 font-gilroy-medium text-ui-14 leading-copy text-text-secondary"
+            id="product-details-description"
+          >
             {product.description}
           </p>
           <p className="mt-3 font-gilroy-regular text-ui-14 leading-copy text-text-secondary">

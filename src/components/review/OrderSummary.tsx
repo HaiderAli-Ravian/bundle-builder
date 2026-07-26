@@ -104,7 +104,7 @@ export function OrderSummary({
       </button>
 
       <button
-        className="mx-auto mt-[6px] block font-gilroy-italic text-ui-12 leading-save-action tracking-save-action text-text-label italic underline underline-offset-2 hover:no-underline tablet:text-ui-14 wide:mt-[6px] wide:text-[15px]"
+        className="relative mx-auto mt-[6px] block font-gilroy-italic text-ui-12 leading-save-action tracking-save-action text-text-label italic underline underline-offset-2 after:absolute after:-inset-x-2 after:-inset-y-[5px] after:content-[''] hover:no-underline tablet:text-ui-14 wide:mt-[6px] wide:text-[15px]"
         onClick={saveConfiguration}
         type="button"
       >
@@ -123,11 +123,15 @@ export function OrderSummary({
         </p>
       )}
 
-      <p aria-live="polite" className="sr-only" role="status">
-        {checkoutFeedback === 'confirmed'
-          ? 'Checkout is a demonstration and no order has been placed.'
-          : ''}
-      </p>
+      {checkoutFeedback === 'confirmed' && (
+        <p
+          aria-live="polite"
+          className="mt-[5px] text-center font-gilroy-medium text-ui-12 leading-copy text-text-secondary"
+          role="status"
+        >
+          Checkout is a demonstration and no order has been placed.
+        </p>
+      )}
     </section>
   )
 }
