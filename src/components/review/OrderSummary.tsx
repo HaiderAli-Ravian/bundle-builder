@@ -53,7 +53,7 @@ export function OrderSummary({
   return (
     <section
       aria-label="Order summary"
-      className="mt-[10px] desktop:mt-[13px] wide:mt-0"
+      className="mt-[33px] desktop:mt-[13px] wide:mt-0"
     >
       <div className="grid grid-cols-[78px_minmax(0,1fr)] items-start gap-x-[10px] wide:hidden">
         <img
