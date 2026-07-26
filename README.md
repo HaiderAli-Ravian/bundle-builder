@@ -7,6 +7,11 @@ Figma compositions. Shoppers can configure products and variants, review the
 bundle, see derived pricing, and explicitly save the configuration for a later
 visit.
 
+## Links
+
+- [Live demo](https://bundle-builder-ecru.vercel.app/)
+- [GitHub repository](https://github.com/HaiderAli-Ravian/bundle-builder)
+
 ## Requirements
 
 - Node.js `^20.19.0` or `>=22.12.0`
