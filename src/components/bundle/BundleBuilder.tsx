@@ -1,38 +1,25 @@
-import { useState } from 'react'
-import {
-  builderCategories,
-  catalog,
-  initialConfiguration,
-} from '../../data/catalog'
+import { useShallow } from 'zustand/react/shallow'
+import { builderCategories, catalog } from '../../data/catalog'
 import { resolveAsset } from '../../data/assetRegistry'
-import { getSelectedProductCounts } from '../../data/validation'
-import type {
-  ProductConfiguration,
-  StepId,
-} from '../../domain/bundleTypes'
+import type { StepId } from '../../domain/bundleTypes'
+import { selectSelectedProductCount } from '../../store/bundleSelectors'
+import { useBundleStore } from '../../store/bundleStore'
 import { ProductGrid } from '../product/ProductGrid'
 import { BundleStep } from './BundleStep'
 
 export function BundleBuilder() {
-  const [openStepId, setOpenStepId] = useState<StepId | null>(
-    initialConfiguration.openStepId,
-  )
-  const [productConfigurations, setProductConfigurations] = useState<
-    readonly ProductConfiguration[]
-  >(() =>
-    initialConfiguration.products.map((configuration) => ({
-      ...configuration,
-      quantities: { ...configuration.quantities },
-    })),
-  )
-
-  const runtimeConfiguration = {
-    ...initialConfiguration,
-    products: productConfigurations,
-  }
-  const selectedProductCounts = getSelectedProductCounts(
-    catalog,
-    runtimeConfiguration,
+  const openStepId = useBundleStore((state) => state.openStepId)
+  const setOpenStep = useBundleStore((state) => state.setOpenStep)
+  const toggleStep = useBundleStore((state) => state.toggleStep)
+  const selectedProductCounts = useBundleStore(
+    useShallow((state) =>
+      Object.fromEntries(
+        builderCategories.map((category) => [
+          category.id,
+          selectSelectedProductCount(state, category.id),
+        ]),
+      ) as Record<StepId, number>,
+    ),
   )
 
   const focusHeader = (stepId: StepId) => {
@@ -40,80 +27,8 @@ export function BundleBuilder() {
   }
 
   const openStep = (stepId: StepId) => {
-    setOpenStepId(stepId)
+    setOpenStep(stepId)
     focusHeader(stepId)
-  }
-
-  const setActiveVariant = (productId: string, variantId: string) => {
-    const product = catalog.products.find(
-      (candidate) => candidate.id === productId,
-    )
-
-    if (!product?.variants.some((variant) => variant.id === variantId)) {
-      return
-    }
-
-    setProductConfigurations((currentConfigurations) =>
-      currentConfigurations.map((configuration) =>
-        configuration.productId === productId
-          ? { ...configuration, activeVariantId: variantId }
-          : configuration,
-      ),
-    )
-  }
-
-  const adjustQuantity = (
-    productId: string,
-    variantId: string,
-    delta: -1 | 1,
-  ) => {
-    const product = catalog.products.find(
-      (candidate) => candidate.id === productId,
-    )
-
-    if (!product?.quantityEditable) {
-      return
-    }
-
-    setProductConfigurations((currentConfigurations) =>
-      currentConfigurations.map((configuration) => {
-        if (
-          configuration.productId !== productId ||
-          !(variantId in configuration.quantities)
-        ) {
-          return configuration
-        }
-
-        const currentQuantity = configuration.quantities[variantId] ?? 0
-        const otherVariantQuantity = Object.entries(
-          configuration.quantities,
-        ).reduce(
-          (total, [currentVariantId, quantity]) =>
-            currentVariantId === variantId ? total : total + quantity,
-          0,
-        )
-        const minimum = Math.max(
-          0,
-          product.minQuantity - otherVariantQuantity,
-        )
-        const maximum =
-          product.maxQuantity === undefined
-            ? Number.POSITIVE_INFINITY
-            : Math.max(0, product.maxQuantity - otherVariantQuantity)
-        const quantity = Math.min(
-          maximum,
-          Math.max(minimum, currentQuantity + delta),
-        )
-
-        return {
-          ...configuration,
-          quantities: {
-            ...configuration.quantities,
-            [variantId]: quantity,
-          },
-        }
-      }),
-    )
   }
 
   return (
@@ -133,20 +48,13 @@ export function BundleBuilder() {
             key={step.id}
             nextLabel={nextStep?.title}
             onNext={nextStep ? () => openStep(nextStep.id) : undefined}
-            onToggle={() =>
-              setOpenStepId((currentStepId) =>
-                currentStepId === step.id ? null : step.id,
-              )
-            }
+            onToggle={() => toggleStep(step.id)}
             selectedCount={selectedProductCounts[step.id]}
             step={step.stepNumber}
             title={step.title}
           >
             {step.id === 'cameras' ? (
               <ProductGrid
-                configurations={productConfigurations}
-                onQuantityChange={adjustQuantity}
-                onVariantChange={setActiveVariant}
                 products={catalog.products.filter(
                   (product) =>
                     product.categoryId === step.id && product.visibleInBuilder,
