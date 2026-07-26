@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme static {
+  /* Keep each design weight explicit so components do not rely on synthetic font styles. */
+  --font-gilroy-regular:
+    "Gilroy-Regular", "Gilroy", "Avenir Next", "Segoe UI", sans-serif;
+  --font-gilroy-medium:
+    "Gilroy-Medium", "Gilroy", "Avenir Next", "Segoe UI", sans-serif;
+  --font-gilroy-semibold:
+    "Gilroy-SemiBold", "Gilroy", "Avenir Next", "Segoe UI", sans-serif;
+  --font-gilroy-bold:
+    "Gilroy-Bold", "Gilroy", "Avenir Next", "Segoe UI", sans-serif;
+  --font-gilroy-italic:
+    "Gilroy-RegularItalic", "Gilroy", "Avenir Next", "Segoe UI", sans-serif;
+  --font-tt-norms:
+    "TT Norms Pro", "Avenir Next", "Segoe UI", sans-serif;
+
+  /* Brand and interface palette */
+  --color-page: #ffffff;
+  --color-card: #ffffff;
+  --color-on-accent: #ffffff;
+  --color-builder-surface: #edf4ff;
+  --color-text-primary: #1f1f1f;
+  --color-obsidian: #0b0d10;
+  --color-text-label: #484848;
+  --color-text-secondary: #575757;
+  --color-gray-c-600: #6f7882;
+  --color-gray-c-500: #a8b2bd;
+  --color-gray-c-400: #ced6de;
+  --color-gray-c-300: #e6ebf0;
+  --color-gray-c-200: #f0f4f7;
+  --color-wyze-purple: #4e2fd2;
+  --color-selected-border: rgb(78 47 210 / 70%);
+  --color-price-reduction: #d8392b;
+  --color-savings: #0aa288;
+  --color-focus-ring: #4e2fd2;
+
+  /* Responsive type scale */
+  --text-ui-10: 10px;
+  --text-ui-12: 12px;
+  --text-ui-14: 14px;
+  --text-ui-16: 16px;
+  --text-ui-17: 17px;
+  --text-ui-18: 18px;
+  --text-ui-20: 20px;
+  --text-ui-22: 22px;
+  --text-ui-24: 24px;
+  --text-ui-28: 28px;
+  --text-page-heading: 31.88px;
+
+  --leading-solid: 100%;
+  --leading-compact: 110%;
+  --leading-save-action: 120%;
+  --leading-copy: 130%;
+  --leading-control: 16px;
+  --leading-button: 24px;
+  --leading-total-compare: 20px;
+  --leading-total: 32px;
+
+  --tracking-eyebrow: 1.6px;
+  --tracking-copy: 0.6px;
+  --tracking-review: 0.005em;
+  --tracking-review-group: 0.03em;
+  --tracking-plan: -0.002em;
+  --tracking-financing: -0.05em;
+  --tracking-total-compare: 0.0025em;
+  --tracking-total: -0.0013em;
+  --tracking-fine: -0.06px;
+  --tracking-save-action: -0.02px;
+
+  /* Shape and spacing */
+  --radius-panel: 10px;
+  --radius-card: 10px;
+  --radius-next-button: 7px;
+  --radius-checkout-button: 4px;
+  --radius-finance-label: 3px;
+  --radius-savings-badge: 10px;
+
+  --spacing-builder-section: 13px;
+  --spacing-panel-inset: 15px;
+  --spacing-product-grid: 15px;
+  --spacing-card-inset: 11px;
+  --spacing-card-content: 19px;
+  --spacing-review-inset: 20px;
+  --spacing-review-bottom: 31px;
+  --spacing-standard-columns: 46px;
+  --spacing-wide-review-columns: 52px;
+
+  /* Layout modes */
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 75rem;
+  --breakpoint-wide: 96rem;
+
+  --container-bundle-shell: 1230px;
+  --container-design-content: 1213px;
+  --container-builder-standard: 768px;
+  --container-review-standard: 399px;
+}
+
+:root {
+  /* Geometry shared by product and review controls */
+  --review-panel-padding-bottom: 31px;
+  --standard-stepper-width: 80px;
+  --standard-stepper-height: 35px;
+  --standard-stepper-control-size: 20px;
+  --selected-card-border-width: 2px;
+  --wide-section-divider-width: 0.5px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: light;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    margin: 0;
+    background: var(--color-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-gilroy-regular);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100dvh;
+    isolation: isolate;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  :disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  :where(
+      a,
+      button,
+      input,
+      select,
+      textarea,
+      summary,
+      [tabindex]:not([tabindex="-1"])
+    ):focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
