@@ -5,6 +5,7 @@ import type { StepId } from '../../domain/bundleTypes'
 import { selectSelectedProductCount } from '../../store/bundleSelectors'
 import { useBundleStore } from '../../store/bundleStore'
 import { ProductGrid } from '../product/ProductGrid'
+import { BuilderProductList } from './BuilderProductList'
 import { BundleStep } from './BundleStep'
 
 export function BundleBuilder() {
@@ -34,6 +35,10 @@ export function BundleBuilder() {
   return (
     <div className="mx-auto flex w-full max-w-builder-standard flex-col gap-0 tablet:gap-builder-section desktop:max-w-none">
       {builderCategories.map((step) => {
+        const stepProducts = catalog.products.filter(
+          (product) =>
+            product.categoryId === step.id && product.visibleInBuilder,
+        )
         const nextStep = step.nextStepId
           ? builderCategories.find(
               (candidate) => candidate.id === step.nextStepId,
@@ -54,13 +59,10 @@ export function BundleBuilder() {
             title={step.title}
           >
             {step.id === 'cameras' ? (
-              <ProductGrid
-                products={catalog.products.filter(
-                  (product) =>
-                    product.categoryId === step.id && product.visibleInBuilder,
-                )}
-              />
-            ) : null}
+              <ProductGrid products={stepProducts} />
+            ) : (
+              <BuilderProductList products={stepProducts} />
+            )}
           </BundleStep>
         )
       })}
