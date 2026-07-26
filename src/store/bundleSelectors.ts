@@ -2,6 +2,7 @@ import { catalog } from '../data/catalog'
 import type {
   ProductConfiguration,
   ProductId,
+  ReviewLine,
   StepId,
   VariantId,
 } from '../domain/bundleTypes'
@@ -74,5 +75,66 @@ export function selectSelectedProductCount(
         ? count + 1
         : count,
     0,
+  )
+}
+
+export function selectReviewLines(
+  state: Pick<BundleStore, 'quantityByKey'>,
+): readonly ReviewLine[] {
+  const orderedCategories = catalog.categories.toSorted(
+    (left, right) => left.reviewSortOrder - right.reviewSortOrder,
+  )
+
+  return orderedCategories.flatMap((category) =>
+    catalog.products
+      .filter((product) => product.categoryId === category.id)
+      .toSorted(
+        (left, right) => left.reviewSortOrder - right.reviewSortOrder,
+      )
+      .flatMap((product) =>
+        product.variants
+          .toSorted(
+            (left, right) => left.sortOrder - right.sortOrder,
+          )
+          .flatMap((variant) => {
+            const key = createQuantityKey(product.id, variant.id)
+            const quantity = state.quantityByKey[key] ?? 0
+
+            if (quantity <= 0) {
+              return []
+            }
+
+            const pricing = variant.pricing ?? product.basePricing
+            const baseName = product.reviewName ?? product.name
+            const displayName =
+              variant.id === 'default' || variant.id === 'white'
+                ? baseName
+                : `${baseName} (${variant.name})`
+
+            return [
+              {
+                categoryId: product.categoryId,
+                compareAtLinePriceCents:
+                  pricing.compareAtUnitPriceCents === undefined
+                    ? undefined
+                    : pricing.compareAtUnitPriceCents * quantity,
+                compareAtUnitPriceCents:
+                  pricing.compareAtUnitPriceCents,
+                displayName,
+                imageAsset:
+                  product.reviewThumbnailAsset ??
+                  variant.imageAsset ??
+                  product.imageAsset,
+                key,
+                linePriceCents: pricing.unitPriceCents * quantity,
+                productId: product.id,
+                quantity,
+                quantityEditable: product.quantityEditable,
+                unitPriceCents: pricing.unitPriceCents,
+                variantId: variant.id,
+              } satisfies ReviewLine,
+            ]
+          }),
+      ),
   )
 }
