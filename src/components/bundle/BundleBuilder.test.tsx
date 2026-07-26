@@ -31,6 +31,12 @@ describe('BundleBuilder accessibility', () => {
 
     expect(camerasHeader).toHaveAttribute('aria-expanded', 'true')
     expect(planHeader).toHaveAttribute('aria-expanded', 'false')
+    expect(
+      document.getElementById('bundle-step-plan-panel'),
+    ).toHaveAttribute('inert')
+    expect(
+      document.getElementById('bundle-step-plan-panel'),
+    ).toHaveAttribute('aria-hidden', 'true')
 
     await user.click(
       screen.getByRole('button', {
@@ -41,6 +47,12 @@ describe('BundleBuilder accessibility', () => {
     expect(camerasHeader).toHaveAttribute('aria-expanded', 'false')
     expect(planHeader).toHaveAttribute('aria-expanded', 'true')
     expect(planHeader).toHaveFocus()
+    expect(
+      document.getElementById('bundle-step-cameras-panel'),
+    ).toHaveAttribute('inert')
+    expect(
+      document.getElementById('bundle-step-plan-panel'),
+    ).not.toHaveAttribute('inert')
   })
 
   it('toggles headers directly while keeping only one step open', async () => {

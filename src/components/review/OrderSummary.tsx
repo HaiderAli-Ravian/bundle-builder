@@ -15,12 +15,12 @@ function FinancingAndTotals({
   pricing: BundlePricingSummary
 }) {
   return (
-    <div className="flex flex-col items-end gap-[7px] wide:flex-row wide:items-end wide:justify-between wide:gap-[clamp(10px,0.9174cqw,13px)]">
+    <div className="flex flex-col items-end gap-[7px] max-[323px]:items-center wide:flex-row wide:items-end wide:justify-between wide:gap-[clamp(10px,0.9174cqw,13px)]">
       <span className="rounded-finance-label bg-wyze-purple px-[8px] py-[5px] font-gilroy-medium text-ui-12 leading-solid font-medium tracking-financing whitespace-nowrap text-on-accent wide:px-[clamp(8px,0.7339cqw,11px)] wide:py-[clamp(5px,0.4587cqw,7px)] wide:text-[clamp(16px,1.4679cqw,22px)]">
         {catalog.financing.label}
       </span>
 
-      <span className="flex items-baseline justify-end gap-[6px] whitespace-nowrap wide:gap-[clamp(6px,0.5505cqw,8px)]">
+      <span className="flex items-baseline justify-end gap-[6px] whitespace-nowrap max-[323px]:justify-center wide:gap-[clamp(6px,0.5505cqw,8px)]">
         <span className="font-gilroy-medium text-ui-18 leading-total-compare font-medium tracking-total-compare text-gray-c-600 line-through wide:text-[clamp(22px,2.0183cqw,30px)] wide:leading-[clamp(20px,1.8349cqw,27px)]">
           {formatCents(pricing.compareTotalCents)}
         </span>
@@ -55,13 +55,13 @@ export function OrderSummary({
       aria-label="Order summary"
       className="mt-[33px] desktop:mt-[13px] wide:mt-0"
     >
-      <div className="grid grid-cols-[78px_minmax(0,1fr)] items-start gap-x-[10px] wide:hidden">
+      <div className="grid grid-cols-[78px_minmax(0,1fr)] items-start gap-x-[10px] max-[323px]:grid-cols-1 max-[323px]:justify-items-center max-[323px]:gap-y-[10px] wide:hidden">
         <img
           alt="100% Wyze satisfaction guarantee"
           className="size-[78px]"
           src={guaranteeAsset}
         />
-        <div className="pt-[8px]">
+        <div className="pt-[8px] max-[323px]:w-full max-[323px]:pt-0">
           <FinancingAndTotals pricing={pricing} />
         </div>
       </div>

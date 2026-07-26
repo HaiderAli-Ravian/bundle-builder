@@ -48,7 +48,7 @@ export function BundleStep({
   return (
     <section
       aria-labelledby={headerId}
-      className={`flex flex-col ${shellHeight} ${
+      className={`flex flex-col transition-[min-height,background-color,padding-top] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${shellHeight} ${
         expanded
           ? 'bg-builder-surface pt-panel-inset tablet:rounded-panel'
           : step === 1
@@ -83,48 +83,61 @@ export function BundleStep({
             <span className="min-w-0 font-gilroy-semibold text-ui-18 leading-solid font-semibold text-obsidian tablet:text-ui-22 wide:text-ui-28">
               {title}
             </span>
-            <span
-              className={`ml-auto shrink-0 font-gilroy-medium text-ui-14 leading-control font-medium text-wyze-purple ${
-                expanded ? '' : 'tablet:hidden'
-              }`}
-            >
-              {selectedCount} selected
+            <span className="ml-auto flex shrink-0 items-center gap-[10px]">
+              <span
+                className={`font-gilroy-medium text-ui-14 leading-control font-medium text-wyze-purple ${
+                  expanded ? '' : 'tablet:hidden'
+                }`}
+              >
+                {selectedCount} selected
+              </span>
+              <span
+                aria-hidden="true"
+                className={`h-[6px] w-[10px] shrink-0 bg-wyze-purple transition-transform duration-200 ease-out motion-reduce:transition-none ${
+                  expanded ? '' : 'rotate-180'
+                } [clip-path:polygon(50%_0,100%_100%,0_100%)]`}
+              />
             </span>
-            <span
-              aria-hidden="true"
-              className={`h-[6px] w-[10px] shrink-0 bg-wyze-purple transition-transform motion-reduce:transition-none ${
-                expanded ? '' : 'rotate-180'
-              } [clip-path:polygon(50%_0,100%_100%,0_100%)]`}
-            />
           </span>
         </button>
       </h2>
 
       <div
+        aria-hidden={!expanded}
         aria-labelledby={headerId}
-        className="min-h-0 flex-1"
-        hidden={!expanded}
+        className={`grid min-h-0 flex-1 transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+          expanded
+            ? 'grid-rows-[1fr] opacity-100'
+            : 'pointer-events-none grid-rows-[0fr] opacity-0'
+        }`}
         id={panelId}
+        inert={!expanded}
         role="region"
       >
-        <div className="flex h-full min-h-0 flex-col">
-          {children}
+        <div className="min-h-0 overflow-hidden">
+          <div
+            className={`flex h-full min-h-0 flex-col ${
+              nextLabel && onNext ? '' : 'pb-[19px]'
+            }`}
+          >
+            {children}
 
-          {nextLabel && onNext ? (
-            <div className="mt-auto flex min-h-[72px] justify-center pt-[14px] pb-[19px]">
-              <button
-                className={`h-[39px] max-w-[calc(100%-30px)] rounded-next-button border border-wyze-purple px-6 py-[5px] text-center font-gilroy-semibold text-ui-18 leading-button font-semibold whitespace-nowrap text-wyze-purple transition-colors hover:bg-wyze-purple hover:text-on-accent active:bg-wyze-purple/90 motion-reduce:transition-none ${
-                  nextLabel === 'Choose your plan'
-                    ? 'w-[242px]'
-                    : 'min-w-[242px]'
-                }`}
-                onClick={onNext}
-                type="button"
-              >
-                Next: {nextLabel}
-              </button>
-            </div>
-          ) : null}
+            {nextLabel && onNext ? (
+              <div className="mt-auto flex min-h-[72px] justify-center pt-[14px] pb-[19px]">
+                <button
+                  className={`h-[39px] max-w-[calc(100%-30px)] rounded-next-button border border-wyze-purple px-6 py-[5px] text-center font-gilroy-semibold text-ui-18 leading-button font-semibold whitespace-nowrap text-wyze-purple transition-colors hover:bg-wyze-purple hover:text-on-accent active:bg-wyze-purple/90 motion-reduce:transition-none ${
+                    nextLabel === 'Choose your plan'
+                      ? 'w-[242px]'
+                      : 'min-w-[242px]'
+                  }`}
+                  onClick={onNext}
+                  type="button"
+                >
+                  Next: {nextLabel}
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </section>

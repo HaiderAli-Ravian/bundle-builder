@@ -134,7 +134,7 @@ export function ProductCard({
           </div>
         ) : null}
 
-        <div className="mt-auto flex items-end justify-between gap-2 pt-[7px] wide:mt-0 wide:pt-[clamp(7px,3.455cqw,9px)]">
+        <div className="mt-auto flex items-end justify-between gap-2 pt-[7px] max-[323px]:flex-col max-[323px]:justify-end max-[323px]:gap-1 wide:mt-0 wide:pt-[clamp(7px,3.455cqw,9px)]">
           <QuantityStepper
             fluidWide
             label={`${product.name} ${activeVariant?.name ?? ''}`.trim()}

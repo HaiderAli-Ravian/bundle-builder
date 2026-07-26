@@ -20,13 +20,13 @@ export function ReviewPanel() {
   return (
     <aside
       aria-label="Bundle review"
-      className="mx-auto flex min-h-[846px] w-full max-w-[390px] flex-col gap-[5px] bg-builder-surface pt-panel-inset desktop:min-h-[855px] desktop:max-w-none desktop:rounded-panel wide:min-h-[658px]"
+      className="mx-auto flex min-h-[846px] w-full max-w-[390px] flex-col gap-[5px] bg-builder-surface pt-panel-inset sm:max-w-builder-standard desktop:min-h-[855px] desktop:max-w-none desktop:rounded-panel wide:min-h-[658px]"
     >
       <p className="px-[15px] font-gilroy-medium text-ui-10 leading-solid font-medium tracking-eyebrow text-text-label uppercase tablet:text-ui-12 wide:hidden">
         Review
       </p>
 
-      <div className="mx-auto min-h-[816px] w-full max-w-[390px] px-review-inset pt-review-inset pb-review-bottom tablet:min-h-[823px] desktop:mr-[9px] desktop:ml-0 wide:mx-auto wide:min-h-[643px] wide:max-w-none">
+      <div className="mx-auto min-h-[816px] w-full max-w-[390px] px-review-inset pt-review-inset pb-review-bottom sm:max-w-none tablet:min-h-[823px] desktop:mr-[9px] desktop:ml-0 desktop:max-w-[390px] wide:mx-auto wide:min-h-[643px] wide:max-w-none">
         <div className="wide:mx-auto wide:grid wide:w-[calc(100%-83px)] wide:grid-cols-[552fr_486fr] wide:gap-x-[4.7707%] wide:[container-type:inline-size]">
           <div>
             <section
