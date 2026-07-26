@@ -12,7 +12,7 @@ function App() {
       </h1>
 
       <div className="mx-auto mt-5 w-full max-w-bundle-shell sm:mt-0">
-        <div className="grid w-full grid-cols-1 desktop:w-[min(100%,var(--container-design-content))] desktop:grid-cols-[minmax(0,1fr)_clamp(390px,calc(3.75vw_+_345px),399px)] desktop:items-start desktop:gap-x-[clamp(24px,calc(9.1667vw_-_86px),46px)] wide:grid-cols-1 wide:gap-x-0 wide:gap-y-[33.58px]">
+        <div className="grid w-full grid-cols-1 desktop:mx-auto desktop:max-w-standard-content desktop:grid-cols-[minmax(0,1fr)_clamp(390px,calc(3.75vw_+_345px),399px)] desktop:items-start desktop:gap-x-[clamp(24px,calc(2.0833vw_-_1px),29px)] wide:mx-0 wide:w-[min(100%,var(--container-design-content))] wide:max-w-none wide:grid-cols-1 wide:gap-x-0 wide:gap-y-[33.58px]">
           <BundleBuilder />
           <ReviewPanel />
         </div>

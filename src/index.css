@@ -83,7 +83,7 @@
   --spacing-card-content: 19px;
   --spacing-review-inset: 20px;
   --spacing-review-bottom: 31px;
-  --spacing-standard-columns: 46px;
+  --spacing-standard-columns: 29px;
   --spacing-wide-review-columns: 52px;
 
   /* Layout modes */
@@ -93,6 +93,7 @@
 
   --container-bundle-shell: 1230px;
   --container-design-content: 1213px;
+  --container-standard-content: 1196px;
   --container-builder-standard: 768px;
   --container-review-standard: 399px;
 }

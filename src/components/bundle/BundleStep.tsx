@@ -1,4 +1,7 @@
+import type { ReactNode } from 'react'
+
 interface BundleStepProps {
+  children?: ReactNode
   expanded: boolean
   icon: string
   id: string
@@ -25,6 +28,7 @@ const headerHeight = {
 } as const
 
 export function BundleStep({
+  children,
   expanded,
   icon,
   id,
@@ -66,7 +70,9 @@ export function BundleStep({
           </span>
 
           <span
-            className={`mt-[5px] flex w-full items-center gap-[10px] border-y border-gray-c-500 px-[15px] transition-colors group-hover:bg-white/45 group-active:bg-white/70 motion-reduce:transition-none ${headerHeight[step]}`}
+            className={`mt-[5px] flex w-full items-center gap-[10px] border-gray-c-500 px-[15px] transition-colors group-hover:bg-white/45 group-active:bg-white/70 motion-reduce:transition-none ${
+              expanded ? 'border-t' : 'border-y'
+            } ${headerHeight[step]}`}
           >
             <img
               alt=""
@@ -97,17 +103,25 @@ export function BundleStep({
         id={panelId}
         role="region"
       >
-        {nextLabel && onNext ? (
-          <div className="flex h-full min-h-[64px] items-end justify-center pb-[18px]">
-            <button
-              className="h-[39px] min-w-[242px] max-w-[calc(100%-30px)] rounded-next-button border border-wyze-purple px-6 py-[5px] text-center font-gilroy-semibold text-ui-18 leading-button font-semibold whitespace-nowrap text-wyze-purple transition-colors hover:bg-wyze-purple hover:text-on-accent active:bg-wyze-purple/90 motion-reduce:transition-none"
-              onClick={onNext}
-              type="button"
-            >
-              Next: {nextLabel}
-            </button>
-          </div>
-        ) : null}
+        <div className="flex h-full min-h-0 flex-col">
+          {children}
+
+          {nextLabel && onNext ? (
+            <div className="mt-auto flex min-h-[72px] justify-center pt-[14px] pb-[19px]">
+              <button
+                className={`h-[39px] max-w-[calc(100%-30px)] rounded-next-button border border-wyze-purple px-6 py-[5px] text-center font-gilroy-semibold text-ui-18 leading-button font-semibold whitespace-nowrap text-wyze-purple transition-colors hover:bg-wyze-purple hover:text-on-accent active:bg-wyze-purple/90 motion-reduce:transition-none ${
+                  nextLabel === 'Choose your plan'
+                    ? 'w-[242px]'
+                    : 'min-w-[242px]'
+                }`}
+                onClick={onNext}
+                type="button"
+              >
+                Next: {nextLabel}
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </section>
   )
