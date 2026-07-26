@@ -42,6 +42,10 @@ export function OrderSummary({
   const confirmCheckout = useBundleStore(
     (state) => state.confirmCheckout,
   )
+  const saveConfiguration = useBundleStore(
+    (state) => state.saveConfiguration,
+  )
+  const saveFeedback = useBundleStore((state) => state.saveFeedback)
   const guaranteeAsset = resolveAsset(
     'badges/wyze-satisfaction-guarantee.svg',
   )
@@ -101,10 +105,23 @@ export function OrderSummary({
 
       <button
         className="mx-auto mt-[6px] block font-gilroy-italic text-ui-12 leading-save-action tracking-save-action text-text-label italic underline underline-offset-2 hover:no-underline tablet:text-ui-14 wide:mt-[6px] wide:text-[15px]"
+        onClick={saveConfiguration}
         type="button"
       >
         Save my system for later
       </button>
+
+      {saveFeedback !== 'idle' && (
+        <p
+          aria-live="polite"
+          className="mt-[5px] text-center font-gilroy-medium text-ui-12 leading-copy text-text-secondary"
+          role="status"
+        >
+          {saveFeedback === 'saved'
+            ? 'Your system has been saved.'
+            : "We couldn't save your system. Please try again."}
+        </p>
+      )}
 
       <p aria-live="polite" className="sr-only" role="status">
         {checkoutFeedback === 'confirmed'
