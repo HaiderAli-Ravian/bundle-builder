@@ -29,6 +29,7 @@
   --color-gray-c-400: #ced6de;
   --color-gray-c-300: #e6ebf0;
   --color-gray-c-200: #f0f4f7;
+  --color-required-control: #f1f1f2;
   --color-wyze-purple: #4e2fd2;
   --color-selected-border: rgb(78 47 210 / 70%);
   --color-price-reduction: #d8392b;
@@ -174,6 +175,12 @@
     ):focus-visible {
     outline: 2px solid var(--color-focus-ring);
     outline-offset: 3px;
+  }
+}
+
+@media (min-width: 75rem) {
+  html {
+    scrollbar-gutter: stable both-edges;
   }
 }
 

@@ -17,6 +17,7 @@ export interface BundleActions {
     variantId: VariantId,
     delta: QuantityDelta,
   ) => void
+  confirmCheckout: () => void
   setActiveVariant: (
     productId: ProductId,
     variantId: VariantId,
@@ -117,12 +118,17 @@ function createBundleState(
         }
 
         return {
+          checkoutFeedback: 'idle',
           quantityByKey: {
             ...state.quantityByKey,
             [quantityKey]: nextQuantity,
           },
         }
       })
+    },
+
+    confirmCheckout: () => {
+      set({ checkoutFeedback: 'confirmed' })
     },
 
     setActiveVariant: (productId, variantId) => {

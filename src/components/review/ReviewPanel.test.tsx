@@ -89,6 +89,11 @@ describe('ReviewPanel', () => {
       }),
     ).toBeDisabled()
     expect(
+      within(review).getByRole('button', {
+        name: 'Increase Wyze Sense Hub (Required) quantity',
+      }),
+    ).toBeEnabled()
+    expect(
       within(review).queryByRole('group', {
         name: 'Cam Unlimited quantity',
       }),
@@ -106,6 +111,41 @@ describe('ReviewPanel', () => {
     expect(
       screen.getByRole('button', { name: 'Checkout' }),
     ).toBeDisabled()
+    expect(screen.getAllByText('$0.00')).toHaveLength(4)
+  })
+
+  it('renders derived totals and updates them with quantities', () => {
+    useBundleStore
+      .getState()
+      .adjustQuantity('wyze-cam-v4', 'white', 1)
+
+    render(<ReviewPanel />)
+
+    expect(screen.getAllByText('$237.85')).toHaveLength(2)
+    expect(screen.getAllByText('$296.77')).toHaveLength(2)
+    expect(
+      screen.getByText(
+        "Congrats! You're saving $58.92 on your security bundle!",
+      ),
+    ).toBeInTheDocument()
+  })
+
+  it('confirms that Checkout is a demonstration without navigating', async () => {
+    const user = userEvent.setup()
+
+    render(<ReviewPanel />)
+
+    await user.click(
+      screen.getByRole('button', { name: 'Checkout' }),
+    )
+
+    expect(
+      screen.getByText(
+        'Checkout is a demonstration and no order has been placed.',
+      ),
+    ).toHaveTextContent(
+      'Checkout is a demonstration and no order has been placed.',
+    )
   })
 
   it('restores a removed accessory from its builder control', async () => {
