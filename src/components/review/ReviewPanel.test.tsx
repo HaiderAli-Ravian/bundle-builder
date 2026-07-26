@@ -8,8 +8,13 @@ import {
 } from '../../store/bundleStore'
 import { ReviewPanel } from './ReviewPanel'
 
+const saveConfiguration = useBundleStore.getState().saveConfiguration
+
 beforeEach(() => {
-  useBundleStore.setState(createInitialBundleState())
+  useBundleStore.setState({
+    ...createInitialBundleState(),
+    saveConfiguration,
+  })
 })
 
 afterEach(() => {
@@ -146,6 +151,28 @@ describe('ReviewPanel', () => {
     ).toHaveTextContent(
       'Checkout is a demonstration and no order has been placed.',
     )
+  })
+
+  it('shows confirmation after saving the current configuration', async () => {
+    const user = userEvent.setup()
+
+    useBundleStore.setState({
+      saveConfiguration: () => {
+        useBundleStore.setState({ saveFeedback: 'saved' })
+      },
+    })
+
+    render(<ReviewPanel />)
+
+    await user.click(
+      screen.getByRole('button', {
+        name: 'Save my system for later',
+      }),
+    )
+
+    expect(
+      screen.getByText('Your system has been saved.'),
+    ).toHaveTextContent('Your system has been saved.')
   })
 
   it('restores a removed accessory from its builder control', async () => {

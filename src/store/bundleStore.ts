@@ -8,6 +8,12 @@ import type {
   StepId,
   VariantId,
 } from '../domain/bundleTypes'
+import {
+  getBrowserStorage,
+  restoreBundleState,
+  saveBundleState,
+  type BundleStorage,
+} from './bundlePersistence'
 
 type QuantityDelta = -1 | 1
 
@@ -18,6 +24,7 @@ export interface BundleActions {
     delta: QuantityDelta,
   ) => void
   confirmCheckout: () => void
+  saveConfiguration: () => void
   setActiveVariant: (
     productId: ProductId,
     variantId: VariantId,
@@ -27,6 +34,11 @@ export interface BundleActions {
 }
 
 export type BundleStore = BundleState & BundleActions
+
+interface BundleStoreOptions {
+  now?: () => Date
+  storage?: BundleStorage | null
+}
 
 const productsById = new Map(
   catalog.products.map((product) => [product.id, product]),
@@ -72,9 +84,16 @@ function createBundleState(
       | Partial<BundleStore>
       | ((state: BundleStore) => Partial<BundleStore>),
   ) => void,
+  get: () => BundleStore,
+  options: BundleStoreOptions = {},
 ): BundleStore {
+  const initialState = restoreBundleState(
+    options.storage ?? null,
+    createInitialBundleState(),
+  )
+
   return {
-    ...createInitialBundleState(),
+    ...initialState,
 
     adjustQuantity: (productId, variantId, delta) => {
       const product = productsById.get(productId)
@@ -123,12 +142,39 @@ function createBundleState(
             ...state.quantityByKey,
             [quantityKey]: nextQuantity,
           },
+          saveFeedback: 'idle',
         }
       })
     },
 
     confirmCheckout: () => {
       set({ checkoutFeedback: 'confirmed' })
+    },
+
+    saveConfiguration: () => {
+      const storage = options.storage ?? null
+
+      if (!storage) {
+        set({ saveFeedback: 'error' })
+        return
+      }
+
+      try {
+        const state = get()
+
+        saveBundleState(
+          storage,
+          {
+            activeVariantByProduct: state.activeVariantByProduct,
+            openStepId: state.openStepId,
+            quantityByKey: state.quantityByKey,
+          },
+          options.now?.() ?? new Date(),
+        )
+        set({ saveFeedback: 'saved' })
+      } catch {
+        set({ saveFeedback: 'error' })
+      }
     },
 
     setActiveVariant: (productId, variantId) => {
@@ -148,6 +194,7 @@ function createBundleState(
             ...state.activeVariantByProduct,
             [productId]: variantId,
           },
+          saveFeedback: 'idle',
         }
       })
     },
@@ -158,7 +205,9 @@ function createBundleState(
       }
 
       set((state) =>
-        state.openStepId === stepId ? state : { openStepId: stepId },
+        state.openStepId === stepId
+          ? state
+          : { openStepId: stepId, saveFeedback: 'idle' },
       )
     },
 
@@ -169,13 +218,20 @@ function createBundleState(
 
       set((state) => ({
         openStepId: state.openStepId === stepId ? null : stepId,
+        saveFeedback: 'idle',
       }))
     },
   }
 }
 
-export function createBundleStore() {
-  return createStore<BundleStore>()(createBundleState)
+export function createBundleStore(options: BundleStoreOptions = {}) {
+  return createStore<BundleStore>()((set, get) =>
+    createBundleState(set, get, options),
+  )
 }
 
-export const useBundleStore = create<BundleStore>()(createBundleState)
+export const useBundleStore = create<BundleStore>()((set, get) =>
+  createBundleState(set, get, {
+    storage: getBrowserStorage(),
+  }),
+)
