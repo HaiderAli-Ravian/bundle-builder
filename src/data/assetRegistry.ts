@@ -1,4 +1,5 @@
 import camUnlimitedIcon from '../assets/icons/cam-unlimited.svg'
+import satisfactionGuaranteeBadge from '../assets/badges/wyze-satisfaction-guarantee.svg'
 import accessoriesIcon from '../assets/icons/category-accessories.svg'
 import camerasIcon from '../assets/icons/category-cameras.svg'
 import planIcon from '../assets/icons/category-plan.svg'
@@ -23,6 +24,7 @@ import senseHubImage from '../assets/products/wyze-sense-hub.svg'
 import motionSensorImage from '../assets/products/wyze-sense-motion-sensor.svg'
 
 const assetRegistry = {
+  'badges/wyze-satisfaction-guarantee.svg': satisfactionGuaranteeBadge,
   'icons/cam-unlimited.svg': camUnlimitedIcon,
   'icons/category-accessories.svg': accessoriesIcon,
   'icons/category-cameras.svg': camerasIcon,

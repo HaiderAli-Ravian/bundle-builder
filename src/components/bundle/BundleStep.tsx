@@ -83,7 +83,11 @@ export function BundleStep({
             <span className="min-w-0 font-gilroy-semibold text-ui-18 leading-solid font-semibold text-obsidian tablet:text-ui-22 wide:text-ui-28">
               {title}
             </span>
-            <span className="ml-auto shrink-0 font-gilroy-medium text-ui-14 leading-control font-medium text-wyze-purple">
+            <span
+              className={`ml-auto shrink-0 font-gilroy-medium text-ui-14 leading-control font-medium text-wyze-purple ${
+                expanded ? '' : 'tablet:hidden'
+              }`}
+            >
               {selectedCount} selected
             </span>
             <span

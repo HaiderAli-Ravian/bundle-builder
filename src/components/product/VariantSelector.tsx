@@ -25,7 +25,7 @@ export function VariantSelector({
   return (
     <div
       aria-label={`${label} color`}
-      className="flex flex-wrap items-center gap-[5px]"
+      className="flex flex-wrap items-center gap-[5px] wide:gap-[clamp(5px,2.468cqw,7px)]"
       role="group"
     >
       {visibleVariants.map((variant) => {
@@ -34,7 +34,7 @@ export function VariantSelector({
         return (
           <button
             aria-pressed={isActive}
-            className={`flex h-[26px] items-center gap-[5px] rounded-[2px] border px-[7px] font-gilroy-medium text-ui-10 leading-solid tracking-copy text-text-primary transition-colors ${
+            className={`flex h-[26px] items-center gap-[5px] rounded-[2px] border px-[7px] font-gilroy-medium text-ui-10 leading-solid tracking-copy text-text-primary transition-colors wide:h-[clamp(26px,12.833cqw,35px)] wide:gap-[clamp(5px,2.468cqw,7px)] wide:px-[clamp(7px,3.455cqw,9px)] wide:text-[clamp(10px,4.936cqw,14px)] ${
               isActive
                 ? 'border-savings bg-white'
                 : 'border-gray-c-400 bg-white hover:border-gray-c-600'
@@ -44,12 +44,14 @@ export function VariantSelector({
             type="button"
           >
             {variant.swatchAsset ? (
-              <img
-                alt=""
-                aria-hidden="true"
-                className="size-[14px] object-contain"
-                src={resolveAsset(variant.swatchAsset)}
-              />
+              <span className="relative size-[14px] shrink-0 wide:size-[clamp(14px,6.91cqw,19px)]">
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute top-1/2 left-1/2 h-auto w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
+                  src={resolveAsset(variant.swatchAsset)}
+                />
+              </span>
             ) : null}
             {variant.name}
           </button>
