@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2026-07-26",
+  "currency": "USD",
+  "categories": [
+    {
+      "id": "cameras",
+      "title": "Choose your cameras",
+      "eyebrow": "STEP 1 OF 4",
+      "reviewLabel": "CAMERAS",
+      "iconAsset": "icons/category-cameras.svg",
+      "stepNumber": 1,
+      "builderSortOrder": 1,
+      "reviewSortOrder": 1,
+      "nextStepId": "plan"
+    },
+    {
+      "id": "plan",
+      "title": "Choose your plan",
+      "eyebrow": "STEP 2 OF 4",
+      "reviewLabel": "PLAN",
+      "iconAsset": "icons/category-plan.svg",
+      "stepNumber": 2,
+      "builderSortOrder": 2,
+      "reviewSortOrder": 4,
+      "nextStepId": "sensors"
+    },
+    {
+      "id": "sensors",
+      "title": "Choose your sensors",
+      "eyebrow": "STEP 3 OF 4",
+      "reviewLabel": "SENSORS",
+      "iconAsset": "icons/category-sensors.svg",
+      "stepNumber": 3,
+      "builderSortOrder": 3,
+      "reviewSortOrder": 2,
+      "nextStepId": "accessories"
+    },
+    {
+      "id": "accessories",
+      "title": "Add extra protection",
+      "eyebrow": "STEP 4 OF 4",
+      "reviewLabel": "ACCESSORIES",
+      "iconAsset": "icons/category-accessories.svg",
+      "stepNumber": 4,
+      "builderSortOrder": 4,
+      "reviewSortOrder": 3
+    }
+  ],
+  "products": [
+    {
+      "id": "wyze-cam-v4",
+      "categoryId": "cameras",
+      "name": "Wyze Cam v4",
+      "description": "The clearest Wyze Cam ever made.",
+      "imageAsset": "products/wyze-cam-v4.svg",
+      "reviewThumbnailAsset": "products/wyze-cam-v4.svg",
+      "badgeText": "Save 22%",
+      "learnMoreAction": "dialog",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 2798,
+        "compareAtUnitPriceCents": 3598
+      },
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchAsset": "products/swatches/wyze-cam-v4-white.svg",
+          "sortOrder": 1
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "swatchAsset": "products/swatches/wyze-cam-v4-grey.svg",
+          "sortOrder": 2
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchAsset": "products/swatches/wyze-cam-v4-black.svg",
+          "sortOrder": 3
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 1,
+      "reviewSortOrder": 1
+    },
+    {
+      "id": "wyze-cam-pan-v3",
+      "categoryId": "cameras",
+      "name": "Wyze Cam Pan v3",
+      "description": "360° pan and 180° tilt security camera.",
+      "imageAsset": "products/wyze-cam-pan-v3.svg",
+      "reviewThumbnailAsset": "products/wyze-cam-pan-v3.svg",
+      "badgeText": "Save 12%",
+      "learnMoreAction": "dialog",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 3498,
+        "compareAtUnitPriceCents": 3998
+      },
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchAsset": "products/swatches/wyze-cam-pan-v3-white.svg",
+          "sortOrder": 1
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchAsset": "products/swatches/wyze-cam-pan-v3-black.svg",
+          "sortOrder": 2
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 2,
+      "reviewSortOrder": 2
+    },
+    {
+      "id": "wyze-cam-floodlight-v2",
+      "categoryId": "cameras",
+      "name": "Wyze Cam Floodlight v2",
+      "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
+      "imageAsset": "products/wyze-cam-floodlight-v2.svg",
+      "reviewThumbnailAsset": "products/wyze-cam-floodlight-v2.svg",
+      "badgeText": "Save 22%",
+      "learnMoreAction": "dialog",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 6998,
+        "compareAtUnitPriceCents": 8998
+      },
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchAsset": "products/swatches/wyze-cam-floodlight-v2-white.svg",
+          "sortOrder": 1
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchAsset": "products/swatches/wyze-cam-floodlight-v2-black.svg",
+          "sortOrder": 2
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 3,
+      "reviewSortOrder": 3
+    },
+    {
+      "id": "wyze-duo-cam-doorbell",
+      "categoryId": "cameras",
+      "name": "Wyze Duo Cam Doorbell",
+      "description": "Two cameras. Two views. Double the porch protection.",
+      "imageAsset": "products/wyze-duo-cam-doorbell.svg",
+      "reviewThumbnailAsset": "products/wyze-duo-cam-doorbell.svg",
+      "learnMoreAction": "dialog",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 6998
+      },
+      "variants": [
+        {
+          "id": "default",
+          "name": "Default",
+          "sortOrder": 1
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 4,
+      "reviewSortOrder": 4
+    },
+    {
+      "id": "wyze-battery-cam-pro",
+      "categoryId": "cameras",
+      "name": "Wyze Battery Cam Pro",
+      "description": "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
+      "imageAsset": "products/wyze-battery-cam-pro.svg",
+      "reviewThumbnailAsset": "products/wyze-battery-cam-pro.svg",
+      "learnMoreAction": "dialog",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 8998
+      },
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchAsset": "products/swatches/wyze-battery-cam-pro-white.svg",
+          "sortOrder": 1
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchAsset": "products/swatches/wyze-battery-cam-pro-black.svg",
+          "sortOrder": 2
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 5,
+      "reviewSortOrder": 5
+    },
+    {
+      "id": "wyze-sense-motion-sensor",
+      "categoryId": "sensors",
+      "name": "Wyze Sense Motion Sensor",
+      "imageAsset": "products/wyze-sense-motion-sensor.svg",
+      "reviewThumbnailAsset": "products/wyze-sense-motion-sensor.svg",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 2999
+      },
+      "variants": [
+        {
+          "id": "default",
+          "name": "Default",
+          "sortOrder": 1
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 1,
+      "reviewSortOrder": 1
+    },
+    {
+      "id": "wyze-sense-hub",
+      "categoryId": "sensors",
+      "name": "Wyze Sense Hub (Required)",
+      "imageAsset": "products/wyze-sense-hub.svg",
+      "reviewThumbnailAsset": "products/wyze-sense-hub.svg",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 0,
+        "compareAtUnitPriceCents": 2992
+      },
+      "variants": [
+        {
+          "id": "default",
+          "name": "Default",
+          "sortOrder": 1
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 1,
+      "visibleInBuilder": true,
+      "builderSortOrder": 2,
+      "reviewSortOrder": 2
+    },
+    {
+      "id": "wyze-microsd-card-256gb",
+      "categoryId": "accessories",
+      "name": "Wyze MicroSD Card (256GB)",
+      "imageAsset": "products/wyze-microsd-card-256gb.svg",
+      "reviewThumbnailAsset": "products/wyze-microsd-card-256gb.svg",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 2098
+      },
+      "variants": [
+        {
+          "id": "default",
+          "name": "Default",
+          "sortOrder": 1
+        }
+      ],
+      "quantityEditable": true,
+      "minQuantity": 0,
+      "visibleInBuilder": true,
+      "builderSortOrder": 1,
+      "reviewSortOrder": 1
+    },
+    {
+      "id": "cam-unlimited",
+      "categoryId": "plan",
+      "name": "Cam Unlimited",
+      "imageAsset": "icons/cam-unlimited.svg",
+      "reviewThumbnailAsset": "icons/cam-unlimited.svg",
+      "basePricing": {
+        "currency": "USD",
+        "unitPriceCents": 999,
+        "compareAtUnitPriceCents": 1299,
+        "billingInterval": "month"
+      },
+      "variants": [
+        {
+          "id": "default",
+          "name": "Default",
+          "sortOrder": 1
+        }
+      ],
+      "quantityEditable": false,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "visibleInBuilder": true,
+      "builderSortOrder": 1,
+      "reviewSortOrder": 1
+    }
+  ],
+  "shipping": {
+    "label": "Fast Shipping",
+    "iconAsset": "icons/shipping-truck.svg",
+    "actualCents": 0,
+    "referenceCents": 599,
+    "includeReferenceInCompareTotal": false
+  },
+  "financing": {
+    "label": "as low as $19.19/mo"
+  }
+}

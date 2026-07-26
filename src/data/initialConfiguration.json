@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2026-07-26",
+  "openStepId": "cameras",
+  "products": [
+    {
+      "productId": "wyze-cam-v4",
+      "activeVariantId": "white",
+      "quantities": {
+        "white": 1,
+        "grey": 0,
+        "black": 0
+      }
+    },
+    {
+      "productId": "wyze-cam-pan-v3",
+      "activeVariantId": "white",
+      "quantities": {
+        "white": 2,
+        "black": 0
+      }
+    },
+    {
+      "productId": "wyze-cam-floodlight-v2",
+      "activeVariantId": "white",
+      "quantities": {
+        "white": 0,
+        "black": 0
+      }
+    },
+    {
+      "productId": "wyze-duo-cam-doorbell",
+      "activeVariantId": "default",
+      "quantities": {
+        "default": 0
+      }
+    },
+    {
+      "productId": "wyze-battery-cam-pro",
+      "activeVariantId": "white",
+      "quantities": {
+        "white": 0,
+        "black": 0
+      }
+    },
+    {
+      "productId": "wyze-sense-motion-sensor",
+      "activeVariantId": "default",
+      "quantities": {
+        "default": 2
+      }
+    },
+    {
+      "productId": "wyze-sense-hub",
+      "activeVariantId": "default",
+      "quantities": {
+        "default": 1
+      }
+    },
+    {
+      "productId": "wyze-microsd-card-256gb",
+      "activeVariantId": "default",
+      "quantities": {
+        "default": 2
+      }
+    },
+    {
+      "productId": "cam-unlimited",
+      "activeVariantId": "default",
+      "quantities": {
+        "default": 1
+      }
+    }
+  ]
+}
