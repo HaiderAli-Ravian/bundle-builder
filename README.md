@@ -3,10 +3,6 @@
 Bundle Builder is a responsive React and TypeScript implementation of the EcomExperts e-commerce take-home assessment. It demonstrates variant-aware state, derived pricing in integer cents, accessible interactions, explicit persistence, and focused behavior tests.
 
 The application uses a static catalog. Checkout and product-detail actions are demonstrations; no payment is processed.
-The interface follows the supplied mobile, standard-desktop, and wide-desktop
-Figma compositions. Shoppers can configure products and variants, review the
-bundle, see derived pricing, and explicitly save the configuration for a later
-visit.
 
 ## Links
 
@@ -18,7 +14,7 @@ visit.
 - Node.js `^20.19.0` or `>=22.12.0`
 - npm
 
-[httpskend, environment variables, or external services are required.
+No backend, environment variables, or external services are required.
 
 ## Run locally
 
@@ -44,7 +40,6 @@ npm run preview
 
 ## Available scripts
 
-
 | Command              | Purpose                                    |
 | -------------------- | ------------------------------------------ |
 | `npm run dev`        | Start the Vite development server          |
@@ -53,9 +48,6 @@ npm run preview
 | `npm run test:watch` | Run Vitest in watch mode                   |
 | `npm run build`      | Type-check and create the production build |
 | `npm run preview`    | Preview the production build               |
-
-
-
 
 ## Core behavior
 
@@ -74,8 +66,6 @@ after reload; unsaved changes are not persisted.
 - Checkout displays an accessible inline confirmation, while Learn More opens
 an accessible placeholder dialog because payment and product-detail
 destinations are outside the assignment scope.
-
-
 
 ## Architecture
 
@@ -105,8 +95,6 @@ src/
 └── store/         Zustand state, selectors, and persistence
 ```
 
-
-
 ## Responsive design
 
 The implementation preserves the three supplied compositions:
@@ -131,8 +119,6 @@ actions.
 - Visible focus styles, reduced-motion handling, useful image alternative text,
 and touch-friendly targets are included.
 
-
-
 ## Testing
 
 The focused Vitest and Testing Library suite covers:
@@ -148,8 +134,6 @@ The focused Vitest and Testing Library suite covers:
 - Explicit save, restoration, and corrupt-storage fallback.
 - Checkout and product-details placeholder interactions.
 
-
-
 ## Design decisions and limitations
 
 - Product-card unit prices are the canonical pricing source. The total shown in
@@ -163,8 +147,6 @@ product imagery.
 - The supplied design names Gilroy and TT Norms Pro, but their licensed font
 files were not included. The CSS preserves those family hooks and uses
 explicit system fallbacks.
-
-
 
 ## Design source
 
