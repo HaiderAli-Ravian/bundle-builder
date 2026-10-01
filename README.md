@@ -1,7 +1,8 @@
 # Bundle Builder
 
-Responsive React implementation of the EcomExperts bundle-builder take-home assignment.
+Bundle Builder is a responsive React and TypeScript implementation of the EcomExperts e-commerce take-home assessment. It demonstrates variant-aware state, derived pricing in integer cents, accessible interactions, explicit persistence, and focused behavior tests.
 
+The application uses a static catalog. Checkout and product-detail actions are demonstrations; no payment is processed.
 The interface follows the supplied mobile, standard-desktop, and wide-desktop
 Figma compositions. Shoppers can configure products and variants, review the
 bundle, see derived pricing, and explicitly save the configuration for a later
@@ -17,7 +18,7 @@ visit.
 - Node.js `^20.19.0` or `>=22.12.0`
 - npm
 
-[https://github.com/HaiderAli-Ravian/bundle-builder.git](https://github.com/HaiderAli-Ravian/bundle-builder.git) No backend, environment variables, or external services are required.
+[httpskend, environment variables, or external services are required.
 
 ## Run locally
 
