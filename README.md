@@ -151,3 +151,11 @@ explicit system fallbacks.
 ## Design source
 
 [Frontend Test Figma](https://www.figma.com/design/JYf61etQVqeseX7oY5alGz/Frontend-Test-Figma)
+
+## Screenshots
+
+### Camera selection and bundle review
+
+Desktop view of variant and quantity controls alongside the calculated bundle pricing summary, using sample catalog data.
+
+![Camera selection and bundle pricing summary](https://github.com/user-attachments/assets/aa1e1e46-893f-4bc0-8273-959f9a77cd00)
